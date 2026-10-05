@@ -4,118 +4,114 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#074E48">
-<title>Prevox · Carte d'urgence (démonstration)</title>
+<meta name="theme-color" content="#F5F7FA">
+<title>Prevox · Informations vitales (démonstration)</title>
 <style>
-  :root{ --teal:#0A8378; --accent:#27DBCB; --deep:#074E48; --ink:#0F172A; --sec:#475569; --line:#E2E8F0; --bg:#F4FBFA; --red:#B91C1C; --redbg:#FEF2F2; --amber:#92400E; --amberbg:#FFFBEB; }
+  :root{
+    --bg:#F5F7FA; --ink:#0F172A; --label:#64748B; --sec:#334155;
+    --section:#FDECEC; --sectionLine:#F6D5D5; --vitalLine:#FCA5A5;
+    --row:#F8FAFC; --rowLine:#E8EDF3; --tile:#D9F4F1; --tileIcon:#0A8378;
+    --tileBlue:#E6ECF8; --red:#B91C1C; --amber:#F59E0B;
+  }
   *{ box-sizing:border-box; margin:0; padding:0; }
-  body{ font-family:-apple-system,BlinkMacSystemFont,"Inter","Segoe UI",Roboto,sans-serif; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased; }
-  .demo{ position:sticky; top:0; z-index:5; background:#F59E0B; color:#3B1F00; text-align:center; font-weight:800; font-size:13px; letter-spacing:.08em; text-transform:uppercase; padding:10px 16px; }
-  .demo span{ display:block; font-weight:600; font-size:12px; letter-spacing:0; text-transform:none; margin-top:2px; }
-  .wrap{ max-width:480px; margin:0 auto; padding:16px 16px 40px; }
-  .top{ display:flex; justify-content:space-between; align-items:center; margin:6px 0 14px; }
-  .wm{ font-size:20px; font-weight:600; letter-spacing:-0.03em; }
-  .wm .dot{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--accent); margin:0 3px 0 1px; vertical-align:middle; }
-  .wm .h{ color:#64748B; font-weight:400; }
-  .lang{ display:flex; gap:4px; }
-  .lang button{ border:1px solid var(--line); background:#fff; color:var(--sec); font-weight:700; font-size:12px; padding:5px 10px; border-radius:999px; cursor:pointer; }
-  .lang button.on{ background:var(--deep); color:#fff; border-color:var(--deep); }
-  .hero{ background:linear-gradient(135deg,#0e4f55,#0A8378 60%,#14C2B2); color:#fff; border-radius:22px; padding:18px; }
-  .hero .k{ font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; opacity:.85; }
-  .hero h1{ font-size:26px; font-weight:800; letter-spacing:-0.02em; margin-top:4px; }
-  .hero p{ font-size:13px; opacity:.9; margin-top:4px; }
-  .card{ background:#fff; border:1px solid var(--line); border-radius:18px; padding:14px 16px; margin-top:12px; }
-  .card h2{ font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--teal); margin-bottom:8px; }
-  .alert{ background:var(--redbg); border-color:#FECACA; }
-  .alert h2{ color:var(--red); }
-  .chip{ display:inline-block; font-weight:700; font-size:14px; padding:6px 11px; border-radius:999px; margin:0 6px 6px 0; }
-  .chip.red{ background:#fff; color:var(--red); border:1.5px solid #FCA5A5; }
-  .row{ display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-top:1px solid var(--line); font-size:15px; }
-  .row:first-of-type{ border-top:none; padding-top:0; }
-  .row b{ font-weight:700; }
-  .muted{ color:var(--sec); font-size:12.5px; }
-  .blood{ font-size:34px; font-weight:800; color:var(--deep); letter-spacing:-0.02em; }
-  .ok{ display:inline-block; background:#ECFDF5; color:#065F46; font-size:12px; font-weight:700; padding:3px 8px; border-radius:999px; margin-left:8px; vertical-align:middle; }
-  ul.l{ list-style:none; } ul.l li{ font-size:15px; padding:6px 0; border-top:1px solid var(--line); } ul.l li:first-child{ border-top:none; padding-top:0; }
-  .btn{ display:block; width:100%; text-align:center; background:var(--red); color:#fff; font-weight:800; font-size:15px; padding:14px; border-radius:14px; margin-top:12px; border:none; opacity:.55; }
-  .foot{ margin-top:18px; font-size:12px; color:var(--sec); line-height:1.5; text-align:center; }
-  .foot a{ color:var(--teal); font-weight:700; text-decoration:none; }
+  html,body{ background:var(--bg); }
+  body{ font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Segoe UI",Roboto,sans-serif; color:var(--ink); -webkit-font-smoothing:antialiased; min-height:100vh; position:relative; overflow-x:hidden; }
+  body:before{ content:""; position:absolute; left:-120px; top:-160px; width:380px; height:380px; border-radius:50%; background:#DCE8F8; z-index:0; }
+  .demo{ position:sticky; top:0; z-index:10; background:var(--amber); color:#3B1F00; text-align:center; font-weight:800; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; padding:9px 16px; }
+  .demo small{ display:block; font-weight:600; font-size:12px; letter-spacing:0; text-transform:none; margin-top:1px; }
+  .wrap{ position:relative; z-index:1; max-width:480px; margin:0 auto; padding:10px 16px 36px; }
+  .lang{ display:flex; justify-content:flex-end; gap:4px; margin-bottom:6px; }
+  .lang button{ border:1px solid #E2E8F0; background:#fff; color:var(--label); font-weight:700; font-size:11.5px; padding:4px 10px; border-radius:999px; cursor:pointer; }
+  .lang button.on{ background:var(--ink); color:#fff; border-color:var(--ink); }
+  header{ display:grid; grid-template-columns:44px 1fr 44px; align-items:center; margin:2px 0 16px; }
+  header .ib{ width:44px; height:44px; border-radius:14px; background:#fff; display:flex; align-items:center; justify-content:center; box-shadow:0 1px 3px rgba(15,23,42,.08); }
+  header .t{ text-align:center; }
+  header h1{ font-size:24px; font-weight:800; letter-spacing:-0.02em; }
+  header p{ font-size:13.5px; color:var(--label); margin-top:1px; }
+  .sec{ background:var(--section); border:1.5px solid var(--sectionLine); border-radius:22px; padding:16px 14px; margin-top:14px; }
+  .sec.vital{ border:2.5px solid var(--vitalLine); }
+  .sec h2{ font-size:19px; font-weight:800; letter-spacing:-0.01em; margin:0 4px 12px; }
+  .box{ background:var(--row); border:1px solid var(--rowLine); border-radius:16px; padding:12px 14px; margin-top:10px; }
+  .box:first-of-type{ margin-top:0; }
+  .cap{ font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--label); }
+  .val{ font-size:17px; font-weight:700; margin-top:5px; }
+  .row{ display:grid; grid-template-columns:46px 1fr; gap:14px; align-items:center; background:var(--row); border:1px solid var(--rowLine); border-radius:16px; padding:11px 12px; margin-top:10px; }
+  .row:first-of-type{ margin-top:0; }
+  .tile{ width:46px; height:46px; border-radius:13px; background:var(--tile); display:flex; align-items:center; justify-content:center; }
+  .tile.blue{ background:var(--tileBlue); }
+  .tile svg{ width:22px; height:22px; fill:var(--tileIcon); }
+  .row .l{ font-size:13.5px; font-weight:600; color:var(--label); }
+  .row .v{ font-size:17.5px; font-weight:800; margin-top:2px; line-height:1.25; }
+  .alert{ display:inline-block; background:#fff; color:var(--red); border:1.5px solid var(--vitalLine); font-weight:800; font-size:13px; padding:5px 10px; border-radius:999px; margin:0 6px 6px 0; }
+  .note{ font-size:14.5px; font-weight:600; color:var(--sec); line-height:1.45; margin:0 4px; }
+  .btn{ display:block; width:100%; text-align:center; font-weight:800; font-size:16.5px; padding:15px; border-radius:18px; margin-top:10px; border:1px solid var(--rowLine); background:var(--row); color:var(--ink); }
+  .btn.red{ background:var(--red); border-color:var(--red); color:#fff; margin-top:0; }
+  .btn[disabled]{ cursor:not-allowed; }
+  .foot{ margin-top:18px; font-size:12px; color:var(--label); line-height:1.5; text-align:center; }
+  .foot b{ color:var(--ink); }
 </style>
 </head>
 <body>
-<div class="demo" data-i18n="banner">Démonstration · données fictives<span data-i18n="bannerSub">Cette carte n'appartient à personne : elle montre ce qu'un soignant voit en scannant un QR Prevox.</span></div>
+<div class="demo"><span data-i18n="banner">Démonstration · données fictives</span><small data-i18n="bannerSub">Patient fictif : voici ce qu'un soignant voit en scannant un QR Prevox.</small></div>
 <div class="wrap">
-  <div class="top">
-    <div class="wm">prevox<span class="dot"></span><span class="h">health</span></div>
-    <div class="lang"><button data-l="fr" class="on">FR</button><button data-l="en">EN</button></div>
-  </div>
+  <div class="lang"><button data-l="fr" class="on">FR</button><button data-l="en">EN</button></div>
+  <header>
+    <div class="ib" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" stroke="#0F172A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="t"><h1 data-i18n="title">Informations vitales</h1><p data-i18n="sub">Accès d'urgence sécurisé</p></div>
+    <div class="ib" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#0F172A" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+  </header>
 
-  <div class="hero">
-    <div class="k" data-i18n="kicker">Carte d'urgence</div>
-    <h1>Alex D.</h1>
-    <p data-i18n="heroSub">Informations vitales, dans la langue du soignant.</p>
-  </div>
+  <section class="sec">
+    <div class="box"><div class="cap" data-i18n="identity">Identité</div><div class="val">Alex D.</div></div>
+    <div class="box"><div class="cap" data-i18n="wh">Poids / taille</div><div class="val">84 kg • 178 cm</div></div>
+    <div class="box"><div class="cap" data-i18n="critical">Alertes critiques</div><div style="margin-top:8px;"><span class="alert" data-i18n="anaphylaxis">Risque d'anaphylaxie</span><span class="alert" data-i18n="antiplatelet">Sous antiagrégant</span></div></div>
+  </section>
 
-  <div class="card alert">
-    <h2 data-i18n="critical">Alertes critiques</h2>
-    <span class="chip red" data-i18n="anaphylaxis">Risque d'anaphylaxie</span>
-    <span class="chip red" data-i18n="antiplatelet">Sous antiagrégant</span>
-  </div>
+  <section class="sec vital">
+    <h2 data-i18n="vitals">Données vitales</h2>
+    <div class="row"><div class="tile"><svg viewBox="0 0 24 24"><path d="M12 2.5c-.3 0-.6.2-.8.4C9.4 5.3 5.5 10.4 5.5 14.5a6.5 6.5 0 0013 0c0-4.1-3.9-9.2-5.7-11.6-.2-.2-.5-.4-.8-.4z"/></svg></div><div><div class="l" data-i18n="blood">Groupe sanguin</div><div class="v">O+</div></div></div>
+    <div class="row"><div class="tile"><svg viewBox="0 0 24 24"><path d="M20 3.5c-7.5 0-14.5 3-14.5 10.5 0 1.4.4 2.7 1 3.8L4 20.5l1.4 1.4 2.6-2.6c1.1.7 2.4 1.1 3.9 1.1C19.4 20.4 20.5 10 20 3.5zM9.6 16.6l-1.2-1.2c2.3-2.6 5.2-4.8 8.4-6.3-3 1.8-5.4 4.5-7.2 7.5z"/></svg></div><div><div class="l" data-i18n="allergies">Allergies</div><div class="v" data-i18n="penicillin">Pénicilline</div></div></div>
+    <div class="row"><div class="tile"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3zm-1 6v3H8v2h3v3h2v-3h3v-2h-3V8h-2z"/></svg></div><div><div class="l" data-i18n="conditions">Pathologies critiques</div><div class="v" data-i18n="c1">Hypertension artérielle</div></div></div>
+    <div class="row"><div class="tile"><svg viewBox="0 0 24 24"><path d="M15.7 3.3a5 5 0 017 7l-5.2 5.2-7-7 5.2-5.2zM8.1 9.9l7 7-2.8 2.8a5 5 0 01-7-7l2.8-2.8z"/></svg></div><div><div class="l" data-i18n="treatments">Traitements critiques</div><div class="v" data-i18n="t1">Amlodipine 5 mg, une fois par jour</div><div class="v" data-i18n="t2" style="margin-top:4px;">Kardégic 75 mg</div></div></div>
+  </section>
 
-  <div class="card">
-    <h2 data-i18n="blood">Groupe sanguin</h2>
-    <div><span class="blood">O+</span><span class="ok" data-i18n="verified">Vérifié, 2 déterminations</span></div>
-  </div>
+  <section class="sec">
+    <h2 data-i18n="more">Informations complémentaires</h2>
+    <div class="row"><div class="tile blue"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 013 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></div><div><div class="l" data-i18n="contact">Contact d'urgence</div><div class="v">Sam D. • +33 6 00 00 00 01</div></div></div>
+  </section>
 
-  <div class="card">
-    <h2 data-i18n="allergies">Allergies</h2>
-    <ul class="l"><li data-i18n="penicillin">Pénicilline</li></ul>
-  </div>
+  <section class="sec">
+    <h2 data-i18n="protected">Mode urgence protégé</h2>
+    <p class="note" data-i18n="protectedText">Cette vue d'urgence priorise les données essentielles de prise en charge. L'accès étendu reste protégé et traçable.</p>
+  </section>
 
-  <div class="card">
-    <h2 data-i18n="treatments">Traitements en cours</h2>
-    <ul class="l"><li data-i18n="t1">Amlodipine 5 mg, une fois par jour</li><li data-i18n="t2">Kardégic 75 mg (aspirine)</li></ul>
-  </div>
+  <section class="sec">
+    <h2 data-i18n="actions">Actions rapides</h2>
+    <button class="btn red" disabled data-i18n="call">Appeler le contact d'urgence</button>
+    <button class="btn" disabled data-i18n="share">Partager</button>
+    <button class="btn" disabled data-i18n="pdf">Exporter PDF</button>
+  </section>
 
-  <div class="card">
-    <h2 data-i18n="conditions">Pathologies</h2>
-    <ul class="l"><li data-i18n="c1">Hypertension artérielle</li></ul>
-  </div>
-
-  <div class="card">
-    <h2 data-i18n="contact">Personne à prévenir</h2>
-    <div class="row"><b>Sam D.</b><span class="muted">+33 6 00 00 00 01</span></div>
-    <button class="btn" disabled data-i18n="call">Appeler le contact d'urgence (désactivé en démonstration)</button>
-  </div>
-
-  <p class="foot" data-i18n-html="foot">En service réel, chaque scan est journalisé et le patient choisit ce qui est visible.<br>Prevox n'est pas un dispositif médical : le soignant décide seul.<br><a href="mailto:diane@prevox.health">diane@prevox.health</a></p>
+  <p class="foot" data-i18n-html="foot">Actions désactivées dans la démonstration. En service réel, chaque accès est journalisé.<br>Prevox n'est pas un dispositif médical : le soignant décide seul.<br><b>diane@prevox.health</b></p>
 </div>
 <script>
-  var T = {
-    en: {
-      banner: "Demonstration · fictional data",
-      bannerSub: "This card belongs to no one: it shows what a clinician sees when scanning a Prevox QR.",
-      kicker: "Emergency card", heroSub: "Vital information, in the clinician's language.",
-      critical: "Critical alerts", anaphylaxis: "Anaphylaxis risk", antiplatelet: "On antiplatelet therapy",
-      blood: "Blood group", verified: "Verified, 2 determinations",
-      allergies: "Allergies", penicillin: "Penicillin",
-      treatments: "Current treatments", t1: "Amlodipine 5 mg, once a day", t2: "Kardegic 75 mg (aspirin)",
-      conditions: "Conditions", c1: "Hypertension",
-      contact: "Person to contact", call: "Call the emergency contact (disabled in the demo)",
-      foot: "In real use, every scan is logged and the patient chooses what is visible.<br>Prevox is not a medical device: the clinician alone decides.<br><a href=\"mailto:diane@prevox.health\">diane@prevox.health</a>"
-    }
+  var EN = {
+    banner:"Demonstration · fictional data", bannerSub:"Fictional patient: this is what a clinician sees when scanning a Prevox QR.",
+    title:"Vital information", sub:"Secure emergency access", identity:"Identity", wh:"Weight / height",
+    critical:"Critical alerts", anaphylaxis:"Anaphylaxis risk", antiplatelet:"On antiplatelet therapy",
+    vitals:"Vital data", blood:"Blood group", allergies:"Allergies", penicillin:"Penicillin",
+    conditions:"Critical conditions", c1:"Hypertension", treatments:"Critical treatments",
+    t1:"Amlodipine 5 mg, once a day", t2:"Kardegic 75 mg", more:"Additional information", contact:"Emergency contact",
+    protected:"Protected emergency mode", protectedText:"This emergency view puts the essential care data first. Extended access stays protected and traceable.",
+    actions:"Quick actions", call:"Call the emergency contact", share:"Share", pdf:"Export PDF",
+    foot:"Actions disabled in the demo. In real use, every access is logged.<br>Prevox is not a medical device: the clinician alone decides.<br><b>diane@prevox.health</b>"
   };
-  var FR = {};
-  document.querySelectorAll("[data-i18n]").forEach(function (el) { FR[el.getAttribute("data-i18n")] = el.childNodes[0] ? el.childNodes[0].nodeValue : el.textContent; });
-  var footFR = document.querySelector("[data-i18n-html]").innerHTML;
+  var FR = {}, nodes = document.querySelectorAll("[data-i18n]"), footEl = document.querySelector("[data-i18n-html]"), footFR = footEl.innerHTML;
+  nodes.forEach(function (el) { FR[el.getAttribute("data-i18n")] = el.textContent; });
   function setLang(l) {
     document.documentElement.lang = l;
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var k = el.getAttribute("data-i18n"), v = l === "fr" ? FR[k] : T.en[k];
-      if (v == null) return;
-      if (el.childNodes[0] && el.childNodes[0].nodeType === 3) el.childNodes[0].nodeValue = v; else el.textContent = v;
-    });
-    document.querySelector("[data-i18n-html]").innerHTML = l === "fr" ? footFR : T.en.foot;
+    nodes.forEach(function (el) { var k = el.getAttribute("data-i18n"); el.textContent = l === "fr" ? FR[k] : (EN[k] || FR[k]); });
+    footEl.innerHTML = l === "fr" ? footFR : EN.foot;
     document.querySelectorAll(".lang button").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-l") === l); });
   }
   document.querySelectorAll(".lang button").forEach(function (b) { b.addEventListener("click", function () { setLang(b.getAttribute("data-l")); }); });
